@@ -1,0 +1,268 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "city university support",
+      "intents": [
+        {
+          "name": "OfferedPrograms",
+          "slots": [
+            {
+              "name": "DegreeLevel",
+              "type": "DegreeLevelOffered",
+              "samples": [
+                "associate",
+                "certificate",
+                "bachelors",
+                "masters"
+              ]
+            }
+          ],
+          "samples": [
+            "How to enroll",
+            "What programs do you offer",
+            "What Degree programs do you have",
+            "list the programs offered",
+            "i want to know the programs university offers",
+            "which program can i enroll in",
+            "tell me the programs in {DegreeLevel}",
+            "What programs are offered in {DegreeLevel}"
+          ]
+        },
+        {
+          "name": "Timings",
+          "slots": [],
+          "samples": [
+            "time",
+            "timings",
+            "i need help with timings",
+            "What are the university timings",
+            "When can i contact the university",
+            "What time is university open"
+          ]
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "Housing",
+          "slots": [],
+          "samples": [
+            "Need help with housing at city university",
+            "Need help with housing",
+            "what are the options for housing",
+            "housing programs at city university",
+            "Does university have any housing programs"
+          ]
+        },
+        {
+          "name": "Address",
+          "slots": [
+            {
+              "name": "Location",
+              "type": "LocationsAvailable",
+              "samples": [
+                "Canada",
+                "British Columbia",
+                "Vancouver",
+                "Washington",
+                "Seattle"
+              ]
+            }
+          ],
+          "samples": [
+            "physical address of university in {Location}",
+            "Where you located in {Location}",
+            "address",
+            "tell me address",
+            "How can I reach city university",
+            "Where is the university located"
+          ]
+        },
+        {
+          "name": "Scholarship",
+          "slots": [],
+          "samples": [
+            "i need help with scholarship details",
+            "i need help with my tuition expenses",
+            "Do you offer scholarships",
+            "what financial aid can i get",
+            "Tell me about scholarship details",
+            "What scholarships do you offer"
+          ]
+        },
+        {
+          "name": "Advisor",
+          "slots": [],
+          "samples": [
+            "help me with admissions",
+            "help with admissions",
+            "i want to talk to someone about admissions",
+            "I want to talk to an advisor",
+            "I need help with admission",
+            "How do i get in touch with an advisor"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "Masters",
+                "synonyms": [
+                  "master"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Bachelors",
+                "synonyms": [
+                  "bachelor"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Associate",
+                "synonyms": [
+                  "associates"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Certificate",
+                "synonyms": [
+                  "cert"
+                ]
+              }
+            }
+          ],
+          "name": "DegreeLevelOffered"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "Canada",
+                "synonyms": [
+                  "vancouver canada",
+                  "vancouver british columbia canada",
+                  "vancouver",
+                  "vancouver BC",
+                  "vancouver british columbia"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Seattle",
+                "synonyms": [
+                  "west seattle",
+                  "downtown seattle",
+                  "seattle wa",
+                  "seattle washington"
+                ]
+              }
+            }
+          ],
+          "name": "LocationsAvailable"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "Promise"
+              }
+            },
+            {
+              "name": {
+                "value": "Enactus"
+              }
+            }
+          ],
+          "name": "ProgramType"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "OfferedPrograms",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "DegreeLevel",
+              "type": "DegreeLevelOffered",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Intent-OfferedPrograms.IntentSlot-DegreeLevel"
+              }
+            }
+          ],
+          "delegationStrategy": "ALWAYS"
+        },
+        {
+          "name": "Timings",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": []
+        },
+        {
+          "name": "Address",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "Location",
+              "type": "LocationsAvailable",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1076577696659.1065713947919"
+              }
+            }
+          ],
+          "delegationStrategy": "ALWAYS"
+        },
+        {
+          "name": "Scholarship",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [],
+          "delegationStrategy": "ALWAYS"
+        }
+      ],
+      "delegationStrategy": "SKILL_RESPONSE"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Intent-OfferedPrograms.IntentSlot-DegreeLevel",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Our university offers different program levels like Masters, Bachelors, Associate and Certificate. What Program level do you want to enroll in?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1076577696659.1065713947919",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "We are located in Seattle and Vancouver, which address would you like"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "16"
+}
